@@ -1,7 +1,9 @@
-import { Client, Databases, Storage, ID, Query, Account } from "appwrite";
+mport { Client, Databases, Storage, ID, Query, Account } from "appwrite";
+
 import conf from '../conf/conf';
 
 export class Service {
+  
   client = new Client();
   databases;
   bucket;
@@ -28,6 +30,7 @@ export class Service {
   async getAccount() {
     try {
       return await this.account.get();
+     
     } catch (error) {
       if (error.code === 401) {
         console.warn("No user session — user is not logged in");
@@ -55,6 +58,7 @@ export class Service {
         documentId,
         {
           title,
+          
           content,
           featuredImage,
           status,
@@ -151,12 +155,13 @@ export class Service {
 
   getFileView(fileId) {
     try {
-        return this.bucket.getFileView(conf.appwriteBucketId, fileId).toString();
+        return this.bucket.getFileView(conf.appwriteBucketId, fileId);
     } catch (error) {
         console.error("Error fetching file view:", error);
         return null;
     }
 }
+
 
 
 
