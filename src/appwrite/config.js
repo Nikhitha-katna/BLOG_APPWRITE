@@ -55,7 +55,7 @@ export class Service {
         documentId,
         {
           title,
-          slug,
+          
           content,
           featuredImage,
           status,
