@@ -1,4 +1,3 @@
-
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
@@ -47,7 +46,14 @@ export default function PostForm({ post }) {
                 if (file) {
                     const fileId = file.$id;
                     data.featuredImage = fileId; // Ensure fileId is correctly passed in data
-                    const dbPost = await service.createPost({ ...data, userId: userData.$id });
+                    if (!userData) {
+                        console.error("User data not found. Please login again.");
+                        return;
+                      }
+                      
+                      const dbPost = await service.createPost({ ...data, userId: userData.$id });
+                      
+                    // const dbPost = await service.createPost({ ...data, userId: userData.$id });
 
                     if (dbPost) {
                         console.log("Created post:", dbPost); // Log the created post
@@ -131,3 +137,5 @@ export default function PostForm({ post }) {
         </form>
     );
 }
+
+
