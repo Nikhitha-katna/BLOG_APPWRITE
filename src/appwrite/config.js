@@ -55,7 +55,6 @@ export class Service {
         documentId,
         {
           title,
-          
           content,
           featuredImage,
           status,
